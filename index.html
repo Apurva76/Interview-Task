@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+        .option {
+            border: 2px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden; 
+        }
+        .option.selected {
+            border-color: #ff6b6b;
+        }
+        .discount {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .price {
+            float: right;
+            font-weight: bold;
+        }
+        .details {
+            display: none;
+            margin-top: 10px;
+            align-items: center;
+        }
+        .selected .details {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        select {
+            padding: 5px;
+            font-size: 14px;
+        }
+        .button-container {
+             padding: 10px 20px; 
+        }
+
+       .button {
+            width: calc(100% - 40px); 
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin: 20px auto;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="option" onclick="selectOption(this)">
+            <input type="radio" name="pricing" /> 1 Unit <span class="discount">10% Off</span>
+            <span class="price">$10.00 USD</span>
+            <div class="details">
+                <label>Size: 
+                    <select onchange="changeSize(this, this.closest('.option'))">
+                        <option value="small" selected>S</option>
+                        <option value="medium">M</option>
+                        <option value="large">L</option>
+                    </select>
+                </label>
+                <label>Color: 
+                    <select onchange="updateColor(this)">
+                        <option value="light-peach" selected>Light Peach</option>
+                        <option value="light-purple">Light Purple</option>
+                        <option value="light-green">Light Green</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        
+        <div class="option" onclick="selectOption(this)">
+            <input type="radio" name="pricing" /> 2 Units <span class="discount">20% Off</span>
+            <span class="price">$18.00 USD</span>
+            <div class="details">
+                <label>Size: 
+                    <select onchange="changeSize(this, this.closest('.option'))">
+                        <option value="small" selected>S</option>
+                        <option value="medium">M</option>
+                        <option value="large">L</option>
+                    </select>
+                </label>
+                <label>Color: 
+                    <select onchange="updateColor(this)">
+                        <option value="light-peach" selected>Light Peach</option>
+                        <option value="light-purple">Light Purple</option>
+                        <option value="light-green">Light Green</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        
+        <div class="option" onclick="selectOption(this)">
+            <input type="radio" name="pricing" /> 3 Units <span class="discount">30% Off</span>
+            <span class="price">$24.00 USD</span>
+            <div class="details">
+                <label>Size: 
+                    <select onchange="changeSize(this, this.closest('.option'))">
+                        <option value="small" selected>S</option>
+                        <option value="medium">M</option>
+                        <option value="large">L</option>
+                    </select>
+                </label>
+                <label>Color: 
+                    <select onchange="updateColor(this)">
+                        <option value="light-peach" selected>Light Peach</option>
+                        <option value="light-purple">Light Purple</option>
+                        <option value="light-green">Light Green</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        
+        <div class="button">Add to Cart</div>
+    </div>
+    
+    <script>
+        function selectOption(element) {
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        
+        function changeSize(select, optionBox) {
+            const size = select.value;
+            
+           
+            if (size === "small") {
+                optionBox.style.padding = "15px";
+            } else if (size === "medium") {
+                optionBox.style.padding = "20px";
+            } else if (size === "large") {
+                optionBox.style.padding = "25px";
+            }
+        }
+        
+        function updateColor(select) {
+            const optionBox = select.closest('.option');
+            const color = select.value;
+            let newColor = "";
+
+            if (color === "light-purple") {
+                newColor = "#D8BFD8"; 
+            } else if (color === "light-green") {
+                newColor = "#90EE90"; 
+            } else if (color === "light-peach") {
+                newColor = "#FFE5B4"; 
+            }
+
+            optionBox.style.backgroundColor = newColor;
+        }
+    </script>
+</body>
+</html>
